@@ -2,12 +2,10 @@ package com.example.donationapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +27,7 @@ public class RecvAdapter extends RecyclerView.Adapter<RecvAdapter.RecvViewHolder
         public TextView recvID , shortBio ,itemsRequest;
         public Button donate;
         public ImageView inc , dec;
-        public TextView amount;
+        public TextView amount , contact;
 
 
         public RecvViewHolder(@NonNull View itemView) {
@@ -41,6 +39,7 @@ public class RecvAdapter extends RecyclerView.Adapter<RecvAdapter.RecvViewHolder
             shortBio = itemView.findViewById(R.id.tvShortBio);
             itemsRequest = itemView.findViewById(R.id.tvItemsReq); // to be a number
             donate = itemView.findViewById(R.id.btnRecvDonate);
+            contact = itemView.findViewById(R.id.tvContact);
 
         }
     }
@@ -66,12 +65,13 @@ public class RecvAdapter extends RecyclerView.Adapter<RecvAdapter.RecvViewHolder
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final RecvViewHolder holder, int position, @NonNull List<Object> payloads) {
-        final recversItem item = new recversItem(list.get(position).getRecvID(),list.get(position).getShortBio(),list.get(position).getItemRequest());
+        final recversItem item = new recversItem(list.get(position).getRecvID(),list.get(position).getShortBio(),list.get(position).getItemRequest(), list.get(position).getPnum());
 
         holder.recvID.setText("Receiver's ID: " + list.get(position).getRecvID());
         holder.shortBio.setText(list.get(position).getShortBio());
         holder.itemsRequest.setText(Integer.toString(list.get(position).getItemRequest()));
         holder.amount.setText(Integer.toString(item.getAmount()));
+        holder.contact.setText(list.get(position).getPnum());
 
         holder.inc.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")

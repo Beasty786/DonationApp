@@ -2,14 +2,16 @@ package com.example.donationapp;
 
 public class recversItem {
 
-    private String recvID , shortBio ;
+    private String recvID , shortBio, pnum ;
     private int itemRequest,amount;
 
-    recversItem(String recvID , String shortBio , int itemRequest  ){
+
+    recversItem(String recvID, String shortBio, int itemRequest, String pnum){
 
         this.recvID = recvID;
         this.shortBio = shortBio;
         this.itemRequest = itemRequest;
+        this.pnum = pnum;
         this.amount = 0;
     }
 
@@ -52,5 +54,13 @@ public class recversItem {
 
     public void decAmount() {
         if(amount > 0)  amount--;
+    }
+
+    public String getPnum() {
+        return pnum;
+    }
+
+    public void setPnum(String pnum) {
+        this.pnum = pnum;
     }
 }

@@ -20,6 +20,7 @@ public class MainPage extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private User user;
     private solicitDonation solicitDonation;
+    private Addto addto;
 
     private Button addItems , donorList , solicitItem;
 
@@ -47,7 +48,9 @@ public class MainPage extends AppCompatActivity {
         addItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                addto = new Addto();
+                addto.setUser(user);
+                addto.show(getSupportFragmentManager(),"");
             }
         });
 

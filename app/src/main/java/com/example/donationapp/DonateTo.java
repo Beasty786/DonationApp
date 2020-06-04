@@ -113,8 +113,9 @@ public class DonateTo extends AppCompatActivity {
                         int Want_amt = Integer.parseInt(obj.getString("Want_amt"));
                         String ID = obj.getString("UserID");
                         String Bio = obj.getString("shortBio");
+                        String Pnum = obj.getString("UP_StudentContact");
                         if(ID.equals(user.getId())) continue;
-                        recversItem recversItem = new recversItem(ID, Bio,Want_amt);
+                        recversItem recversItem = new recversItem(ID, Bio,Want_amt,Pnum);
                         list.add(recversItem);
                     } catch (JSONException e) {
                         e.printStackTrace();
