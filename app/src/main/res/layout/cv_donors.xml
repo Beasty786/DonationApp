@@ -55,7 +55,7 @@
                 android:id="@+id/tvNumOfItemsDonated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#cf4040"
+                android:textColor="#00e6da"
                 android:textStyle="bold"
                 android:textSize="17dp"
                 android:text="0"

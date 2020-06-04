@@ -19,6 +19,7 @@ public class MainPage extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private User user;
+    private solicitDonation solicitDonation;
 
     private Button addItems , donorList , solicitItem;
 
@@ -60,13 +61,15 @@ public class MainPage extends AppCompatActivity {
         solicitItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                solicitDonation = new solicitDonation();
+                solicitDonation.setUser(user);
+                solicitDonation.show(getSupportFragmentManager() , "");
             }
         });
     }
 
     private void populateList() {
-        donItemList.add(new donItem("Sanitary Pads", R.drawable.pads));
+            donItemList.add(new donItem("Sanitary Pads", R.drawable.pads));
         donItemList.add(new donItem("Blanket",R.drawable.blanket));
         donItemList.add(new donItem("Jacket" , R.drawable.jacket));
         donItemList.add(new donItem("Boys' School Shoes", R.drawable.schoolb));
