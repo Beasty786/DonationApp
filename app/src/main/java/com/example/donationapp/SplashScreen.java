@@ -20,6 +20,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        getSupportActionBar().hide();
+
         Animation simple = AnimationUtils.loadAnimation(this , R.anim.sample_anim);
         Animation blink = AnimationUtils.loadAnimation(this , R.anim.zoomout);
         blink.setDuration(3000);
