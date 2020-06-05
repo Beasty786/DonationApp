@@ -83,6 +83,7 @@ public class Register extends AppCompatActivity {
             protected void onPostExecute(String output) {
                 if(output.equals("1")){
                     startActivity(new Intent(context , Login.class));
+                    finish();
                 }
                 else {
                     Toast.makeText(context , "Something went, try logging in this student number be registered already" ,Toast.LENGTH_LONG).show();
