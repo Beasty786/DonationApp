@@ -122,7 +122,7 @@ public class DonateTo extends AppCompatActivity {
                     }
                 }
                 RecyclerView recyclerView = findViewById(R.id.rvRecv);
-                RecvAdapter adapter = new RecvAdapter(list, context,user);
+                RecvAdapter adapter = new RecvAdapter(list, context,user,getItem());
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(adapter);
             }
