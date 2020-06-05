@@ -132,44 +132,45 @@ public class RecvAdapter extends RecyclerView.Adapter<RecvAdapter.RecvViewHolder
                             amtHave = Integer.parseInt(a.getString("Have_amt"));
 
 
+                            if(amtHave < item.getAmount()){
+                                Toast.makeText(context , "You only have "+ amtHave +" of this item , You can't donate what you don't have" , Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            if(item.getAmount() == 0){
+                                return;
+                            }
+                            amtHave -= amtToDonate;
+                            needAmt -= amtToDonate;
+                            item.setItemRequest(needAmt);
+                            item.setAmount(0);
+                            holder.amount.setText(Integer.toString(0));
+                            holder.itemsRequest.setText(Integer.toString(item.getItemRequest()));
+
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put("userID",user.getId());
+                            contentValues.put("recvID",item.getRecvID());
+                            contentValues.put("amtToDonate", amtToDonate);
+                            contentValues.put("item",itemsID);
+
+                            String url = "https://lamp.ms.wits.ac.za/~s1832967/Calculate.php";
+
+                            AsyncHTTPPost post = new AsyncHTTPPost(url , contentValues) {
+                                @Override
+                                protected void onPostExecute(String output) {
+                                    if(output.equals("1")){
+                                        Toast.makeText(context, "Thank you for donating", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        Toast.makeText(context, "something went wrong",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            };
+                            post.execute();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-                        if(amtHave < item.getItemRequest()){
-                            Toast.makeText(context , "You only have "+ amtHave +" of this item , You can't donate what you don't have" , Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        if(item.getAmount() == 0){
-                            return;
-                        }
-                        amtHave -= amtToDonate;
-                        needAmt -= amtToDonate;
-                        item.setItemRequest(needAmt);
-                        item.setAmount(0);
-                        holder.amount.setText(Integer.toString(0));
-                        holder.itemsRequest.setText(Integer.toString(item.getItemRequest()));
-
-                        ContentValues contentValues = new ContentValues();
-                        contentValues.put("userID",user.getId());
-                        contentValues.put("recvID",item.getRecvID());
-                        contentValues.put("amtToDonate", amtToDonate);
-                        contentValues.put("item",itemsID);
-
-                        String url = "https://lamp.ms.wits.ac.za/~s1832967/Calculate.php";
-
-                        AsyncHTTPPost post = new AsyncHTTPPost(url , contentValues) {
-                            @Override
-                            protected void onPostExecute(String output) {
-                                if(output.equals("1")){
-                                    Toast.makeText(context, "Thank you for donating", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
-                                    Toast.makeText(context, "something went wrong",Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        };
-                        post.execute();
 
                     }
 
