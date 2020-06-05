@@ -85,9 +85,9 @@ public class Login extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(String output) {
-                if(output.equals("exists")){
+                if(output.equals("!exists")){
 
-                    Toast.makeText(context, output +" Hey Man you got an error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Login Failed, Please check credentials", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     try {

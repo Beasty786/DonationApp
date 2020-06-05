@@ -48,8 +48,8 @@ public class Register extends AppCompatActivity {
         String Password = password.getText().toString().trim();
         String Contact  = contact.getText().toString().trim();
 
-        if(Username.equals("")){
-            username.setError("Please Enter Your Student Number");
+        if(Username.equals("") || Username.length() < 6){
+            username.setError("Please Enter Your Student Number of length 6 and higher");
             return;
         }
         if(Name.equals("")){
@@ -85,7 +85,7 @@ public class Register extends AppCompatActivity {
                     startActivity(new Intent(context , Login.class));
                 }
                 else {
-                    Toast.makeText(context , "Something went, try logging in this student number be registered already"+ output ,Toast.LENGTH_LONG).show();
+                    Toast.makeText(context , "Something went, try logging in this student number be registered already" ,Toast.LENGTH_LONG).show();
                 }
             }
         };
